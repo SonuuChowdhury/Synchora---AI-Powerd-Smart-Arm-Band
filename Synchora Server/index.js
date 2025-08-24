@@ -25,6 +25,8 @@ const GEMINI_API_KEY = "AIzaSyDfoEbYTtOlcA46NPfWeNZvIxJQ-dLjC7E";
 // Define a POST endpoint '/upload' to receive image uploads
 // The 'upload.single("image")' middleware extracts a single file from the 'image' field
 app.post("/upload", upload.single("image"), async (req, res) => {
+  // Track time before starting Python detection
+  const detectStart = Date.now();
   // Log that an upload request was received
   console.log('Received upload request');
   
@@ -112,6 +114,9 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
   // Handle the Python process closing (either normally or with error)
   python.on("close", async (code, signal) => {
+    // Track time after Python detection ends
+    const detectEnd = Date.now();
+    const detectTimeMs = detectEnd - detectStart;
     clearTimeout(timeout);
     
     if (responseHandled) {
@@ -162,6 +167,8 @@ app.post("/upload", upload.single("image"), async (req, res) => {
       }
 
       // --- Gemini Integration ---
+      // Track time before Gemini call
+      const geminiStart = Date.now();
       // Prepare prompt for Gemini model
       /*
         The prompt instructs Gemini to:
@@ -171,25 +178,27 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         - Respond ONLY with the speech output, no extra text or formatting
       */
       const geminiPrompt = `You are given AI detection output in JSON format.\nYour task is to convert this detection data into a short 30-second spoken description of the scene. Follow these rules carefully:\n\n1. Identify the place (home, street, classroom, park, office, etc.) by looking at the types of detected objects.\n2. Describe the scene naturally, not like a list, but like you are explaining what is happening.\n3. Classify positions (say \"on the left,\" \"in the middle,\" \"towards the right\") based on bbox x values (smaller x = left, larger x = right).\n4. Add safety or social measures depending on the objects.\n   - If many motorbikes or cars → \"Be careful of traffic.\"\n   - If many people and looks like class/office → \"Maintain silence and focus.\"\n   - If it looks like home/few people → \"It seems peaceful here.\"\n5. Keep it conversational, easy to speak, with commas and full stops for speech flow.\n6. Avoid heavy or complex words. Use simple daily language.\n7. Final output should be one short descriptive speech, not a report.\n\nIMPORTANT: Your response should ONLY be the speech output, nothing else, so it can be extracted easily.\n\nDetection output:\n${JSON.stringify(result)}`;
-
       // Initialize Gemini model
       const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
       // Send prompt to Gemini and get the generated speech description
       let geminiResponse = "";
+      let geminiTimeMs = 0;
       try {
         const geminiResult = await model.generateContent(geminiPrompt);
         geminiResponse = geminiResult.response.text();
+        // Track time after Gemini response
+        geminiTimeMs = Date.now() - geminiStart;
       } catch (err) {
         console.error("Gemini API error:", err);
         return res.status(500).json({ error: "Failed to generate description", details: err.message });
       }
-
-      // Return both detection result and Gemini speech description
+      // Return detection result, Gemini speech, and timings
       res.json({
         detection: result,
-        speech: geminiResponse
+        speech: geminiResponse,
+        detect_time_ms: detectTimeMs,
+        gemini_time_ms: geminiTimeMs
       });
     } catch (e) {
       // If output is not valid JSON

@@ -3,3 +3,7 @@ Hugging Face Model/MobileNetSSD_deploy.prototxt
 Hugging Face Model/yolov3.weights
 Hugging Face Model/yolov3.cfg
 Hugging Face Model/coco.names
+Synchora Server/coco.names
+Synchora Server/yolov3.cfg
+Synchora Server/yolov3.weights
+Synchora Server/node_modules/

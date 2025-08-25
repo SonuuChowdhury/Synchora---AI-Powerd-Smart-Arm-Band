@@ -7,3 +7,30 @@ Synchora Server/coco.names
 Synchora Server/yolov3.cfg
 Synchora Server/yolov3.weights
 Synchora Server/node_modules
+
+
+
+# Logs
+Synchora Frontend/logs
+Synchora Frontend/*.log
+Synchora Frontend/npm-debug.log*
+Synchora Frontend/yarn-debug.log*
+Synchora Frontend/yarn-error.log*
+Synchora Frontend/pnpm-debug.log*
+Synchora Frontend/lerna-debug.log*
+
+Synchora Frontend/node_modules
+Synchora Frontend/dist
+Synchora Frontend/dist-ssr
+Synchora Frontend/*.local
+
+# Editor directories and files
+Synchora Frontend/.vscode/*
+Synchora Frontend/!.vscode/extensions.json
+Synchora Frontend/.idea
+Synchora Frontend/.DS_Store
+Synchora Frontend/*.suo
+Synchora Frontend/*.ntvs*
+Synchora Frontend/*.njsproj
+Synchora Frontend/*.sln
+Synchora Frontend/*.sw?

@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.homeRoot {
+  font-family: 'Poppins', 'Inter', 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #181c24 0%, #232a3a 100%);
+  color: #e0e6f6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.homeNavbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2.5rem;
+  background: rgba(24, 28, 36, 0.95);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.homeLogoWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.homeLogoImg {
+  height: 40px;
+  width: 40px;
+  filter: drop-shadow(0 0 8px #00ffe7);
+}
+
+.homeLogoText {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #00ffe7;
+  text-shadow: 0 0 8px #00ffe7;
+}
+
+.homeNavLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.homeNavLinks li a {
+  color: #e0e6f6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.homeNavLinks li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffe7, #00bfff);
+  transition: width 0.3s;
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+}
+
+.homeNavLinks li a:hover::after {
+  width: 100%;
+}
+
+.homeNavLinks li a:hover {
+  color: #00ffe7;
+}
+
+.homeNavBtns {
+  display: flex;
+  gap: 1rem;
+}
+
+.homeDemoBtn, .homeLoginBtn {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #00ffe7 0%, #00bfff 100%);
+  color: #181c24;
+  box-shadow: 0 0 12px #00ffe780;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.homeDemoBtn:hover, .homeLoginBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px #00ffe7cc;
+  background: linear-gradient(90deg, #00bfff 0%, #00ffe7 100%);
+}
+
+/* Hero Section */
+.homeHero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 3rem 1rem 2rem 1rem;
+  background: linear-gradient(120deg, #232a3a 60%, #181c24 100%);
+  animation: fadeIn 1.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.homeHeroContent {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.homeHeroLogo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 16px #00ffe7);
+  animation: logoPulse 2s infinite alternate;
+}
+
+@keyframes logoPulse {
+  from { filter: drop-shadow(0 0 8px #00ffe7);}
+  to { filter: drop-shadow(0 0 24px #00ffe7);}
+}
+
+.homeHeroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #00ffe7;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #00ffe7;
+}
+
+.homeHeroTagline {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e0e6f6;
+  margin-bottom: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.homeHeroDesc {
+  font-size: 1.1rem;
+  color: #b0b8c1;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.homeHeroAnimatedText {
+  font-size: 1.2rem;
+  color: #00ffe7;
+  font-weight: 500;
+  margin-top: 1.2rem;
+  letter-spacing: 1px;
+  animation: textFadeIn 2s infinite alternate;
+}
+
+@keyframes textFadeIn {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+/* Features Section */
+.homeFeatures {
+  padding: 3rem 1rem 2rem 1rem;
+  background: linear-gradient(120deg, #181c24 60%, #232a3a 100%);
+}
+
+.homeSectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00ffe7;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #00ffe7;
+}
+
+.homeFeaturesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.homeFeatureCard {
+  background: rgba(36, 40, 56, 0.85);
+  border-radius: 22px;
+  box-shadow: 0 4px 32px #00ffe740, 0 0 0 2px #00ffe7a0 inset;
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  animation: cardFadeIn 1.2s;
+  backdrop-filter: blur(8px);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
+}
+
+.homeFeatureCard:hover {
+  transform: scale(1.09);
+  box-shadow: 0 8px 48px #00ffe7cc, 0 0 0 2px #00ffe7 inset;
+  border: 2px solid #00ffe7;
+}
+
+.homeFeatureIcon {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+  color: #00ffe7;
+  text-shadow: 0 0 16px #00ffe7, 0 0 32px #00bfff;
+  animation: iconGlow 2s infinite alternate;
+}
+
+@keyframes iconGlow {
+  from { text-shadow: 0 0 8px #00ffe7, 0 0 16px #00bfff; }
+  to { text-shadow: 0 0 24px #00ffe7, 0 0 48px #00bfff; }
+}
+
+.homeFeatureTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00ffe7;
+  margin-bottom: 0.7rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #00ffe7;
+}
+
+.homeFeatureDesc {
+  font-size: 1.05rem;
+  color: #b0b8c1;
+  line-height: 1.6;
+  margin-bottom: 0.2rem;
+}
+
+/* Team Section */
+.homeTeam {
+  padding: 3rem 1rem 2rem 1rem;
+  background: linear-gradient(120deg, #232a3a 60%, #181c24 100%);
+}
+
+.homeTeamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.homeTeamCard {
+  background: rgba(36, 40, 56, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 4px 32px #00ffe740, 0 0 0 2px #00ffe7a0 inset;
+  padding: 2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  animation: cardFadeIn 1.2s;
+  backdrop-filter: blur(8px);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.homeTeamCard:hover {
+  transform: scale(1.09);
+  box-shadow: 0 8px 48px #00ffe7cc, 0 0 0 2px #00ffe7 inset;
+  border: 2px solid #00ffe7;
+}
+
+.homeTeamImg {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 18px #00ffe7, 0 0 0 4px #232a3a;
+  background: #232a3a;
+  border: 2px solid #00ffe7;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+.homeTeamName {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #00ffe7;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #00ffe7;
+  margin-top: 0.5rem;
+}
+
+/* Footer */
+.homeFooter {
+  background: #181c24;
+  color: #b0b8c1;
+  text-align: center;
+  padding: 1.2rem 0 1rem 0;
+  font-size: 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid #232a3a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.homeFooterLinks {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.homeFooterLinks a {
+  color: #b0b8c1;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.homeFooterLinks a:hover {
+  color: #00ffe7;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .homeNavbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1rem;
+  }
+  .homeFeaturesGrid, .homeTeamGrid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .homeNavbar {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.7rem 0.5rem;
+  }
+  .homeLogoText {
+    font-size: 1.2rem;
+  }
+  .homeHeroTitle {
+    font-size: 2rem;
+  }
+  .homeSectionTitle {
+    font-size: 1.3rem;
+  }
+  .homeFeaturesGrid, .homeTeamGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .homeTeamImg {
+    width: 60px;
+    height: 60px;
+  }
+}

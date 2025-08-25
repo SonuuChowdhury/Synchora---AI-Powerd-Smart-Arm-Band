@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+.demoRoot {
+  font-family: 'Poppins', 'Inter', 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #181c24 0%, #232a3a 100%);
+  color: #e0e6f6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.demoNavbar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 1.2rem 2.5rem;
+  background: rgba(24, 28, 36, 0.95);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.demoLogoWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  justify-content: flex-start;
+}
+
+.demoLogoImg {
+  height: 40px;
+  width: 40px;
+  filter: drop-shadow(0 0 8px #00ffe7);
+}
+
+.demoLogoText {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #00ffe7;
+  text-shadow: 0 0 8px #00ffe7;
+}
+
+.demoNavHome {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.demoHomeBtn {
+  color: #e0e6f6;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 24px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.demoHomeBtn:hover {
+  color: #00ffe7;
+  background: rgba(0,255,231,0.08);
+}
+
+.demoBackArrow {
+  font-size: 1.3rem;
+  margin-right: 0.3rem;
+  color: #00ffe7;
+  text-shadow: 0 0 8px #00ffe7;
+}
+
+/* Demo Section */
+.demoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 3rem 1rem 2rem 1rem;
+  animation: fadeIn 1.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.demoTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #00ffe7;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #00ffe7;
+  text-align: center;
+}
+
+.demoSubtitle {
+  font-size: 1.2rem;
+  color: #b0b8c1;
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.demoActionBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.demoActionText {
+  font-size: 1.1rem;
+  color: #e0e6f6;
+  font-weight: 500;
+}
+
+.demoActionBtn {
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #00ffe7 0%, #00bfff 100%);
+  color: #181c24;
+  box-shadow: 0 0 12px #00ffe780;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.demoActionBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px #00ffe7cc;
+  background: linear-gradient(90deg, #00bfff 0%, #00ffe7 100%);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .demoNavbar {
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+  }
+  .demoLogoWrap {
+    justify-content: flex-start;
+  }
+  .demoNavHome {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .demoNavbar {
+    flex-direction: row;
+    gap: 0.3rem;
+    padding: 0.7rem 0.3rem;
+  }
+  .demoLogoText {
+    font-size: 1.2rem;
+  }
+  .demoTitle {
+    font-size: 1.5rem;
+  }
+  .demoHomeBtn {
+    font-size: 1rem;
+    padding: 0.4rem 0.7rem;
+  }
+}

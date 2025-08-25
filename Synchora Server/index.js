@@ -40,8 +40,16 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   // Track time before starting Python detection
   const detectStart = Date.now();
   // Log that an upload request was received
+  console.log('\n -------------------------------------- New Upload Request -------------------------------------------\n \n \n');
+  const now = new Date();
+  const hours = now.getHours() % 12 || 12;
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+  const day = now.getDate();
+  const month = now.toLocaleString('default', { month: 'long' });
+  const year = now.getFullYear();
+  console.log(`Request time: ${hours}:${minutes} ${ampm}, ${day} ${month}, ${year}`);
   console.log('Received upload request');
-  
 
   // Check if a file was uploaded
   if (!req.file) {
@@ -113,7 +121,6 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   // Collect data from Python's stdout (detection results)
   python.stdout.on("data", (chunk) => {
     data += chunk.toString();
-    console.log('Received stdout chunk:', chunk.toString());
   });
 
 
@@ -212,6 +219,19 @@ app.post("/upload", upload.single("image"), async (req, res) => {
         detect_time_ms: detectTimeMs,
         gemini_time_ms: geminiTimeMs
       });
+
+      // --- Server Health Logging ---
+      const memoryUsage = process.memoryUsage();
+      const uptimeSeconds = process.uptime();
+      console.log('--- Server Health ---');
+      console.log(`Uptime: ${Math.floor(uptimeSeconds)}s`);
+      console.log(`Memory RSS: ${(memoryUsage.rss / 1024 / 1024).toFixed(2)} MB`);
+      console.log(`Heap Used: ${(memoryUsage.heapUsed / 1024 / 1024).toFixed(2)} MB`);
+      console.log(`Heap Total: ${(memoryUsage.heapTotal / 1024 / 1024).toFixed(2)} MB`);
+      console.log('---------------------');
+
+
+
     } catch (e) {
       // If output is not valid JSON
       console.error('Failed to parse Python output:', data);
@@ -278,7 +298,18 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 // Start the Express server on port 3000
 // The server will listen for incoming HTTP requests
 app.listen(3000, "0.0.0.0", () => {
-  console.log("Server running on http://0.0.0.0:3000");
+  console.log(`
+=========================================================
+🚀 Synchora AI Server Started!
+---------------------------------------------------------
+• API Endpoint:   http://localhost:3000/upload
+• Status:         Ready to receive image uploads
+• AI Models:      Python Detection + Gemini 1.5 Flash
+---------------------------------------------------------
+Send a POST request with an image to /upload for
+real-time scene detection and spoken description.
+=========================================================
+`);
 });
 
 

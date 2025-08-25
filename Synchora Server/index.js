@@ -11,8 +11,20 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
 
+
 // Create an Express application instance
 const app = express();
+
+// CORS middleware to allow all origins
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 // Configure multer for handling file uploads in memory
 const upload = multer();
@@ -265,7 +277,10 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
 // Start the Express server on port 3000
 // The server will listen for incoming HTTP requests
-app.listen(3000, () => console.log("🚀 Server running on port 3000"));
+app.listen(3000, "0.0.0.0", () => {
+  console.log("Server running on http://0.0.0.0:3000");
+});
+
 
 
 /*

@@ -32,7 +32,9 @@ export default function Demo() {
     const formData = new FormData();
     formData.append('image', file);
     try {
-      const response = await fetch('http://10.132.223.75:3000/upload', {
+      // const response = await fetch('http://10.132.223.75:3000/upload', {
+      // const response = await fetch('https://3rwgs7b9-5173.inc1.devtunnels.ms/demo', {
+        const response = await fetch('https://a933146699de.ngrok-free.app', {
         method: 'POST',
         body: formData,
       });

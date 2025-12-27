@@ -297,20 +297,21 @@ app.post("/upload", upload.single("image"), async (req, res) => {
 
 // Start the Express server on port 3000
 // The server will listen for incoming HTTP requests
-app.listen(3000, "0.0.0.0", () => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`
 =========================================================
 🚀 Synchora AI Server Started!
 ---------------------------------------------------------
-• API Endpoint:   http://localhost:3000/upload
+• API Endpoint(Local):   http://localhost:${PORT}/upload
+• API Endpoint(Network): Check Render Dashboard
 • Status:         Ready to receive image uploads
-• AI Models:      Python Detection + Gemini 1.5 Flash
 ---------------------------------------------------------
-Send a POST request with an image to /upload for
-real-time scene detection and spoken description.
 =========================================================
 `);
 });
+
 
 
 

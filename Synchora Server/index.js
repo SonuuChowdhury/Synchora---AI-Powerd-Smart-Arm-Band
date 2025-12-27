@@ -199,7 +199,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
       const geminiPrompt = `You are given AI detection output in JSON format.\nYour task is to convert this detection data into a short 30-second spoken description of the scene. Follow these rules carefully:\n\n1. Identify the place (home, street, classroom, park, office, etc.) by looking at the types of detected objects.\n2. Describe the scene naturally, not like a list, but like you are explaining what is happening.\n3. Classify positions (say \"on the left,\" \"in the middle,\" \"towards the right\") based on bbox x values (smaller x = left, larger x = right).\n4. Add safety or social measures depending on the objects.\n   - If many motorbikes or cars → \"Be careful of traffic.\"\n   - If many people and looks like class/office → \"Maintain silence and focus.\"\n   - If it looks like home/few people → \"It seems peaceful here.\"\n5. Keep it conversational, easy to speak, with commas and full stops for speech flow.\n6. Avoid heavy or complex words. Use simple daily language.\n7. Final output should be one short descriptive speech, not a report.\n\nIMPORTANT: Your response should ONLY be the speech output, nothing else, so it can be extracted easily.\n\nDetection output:\n${JSON.stringify(result)}`;
       // Initialize Gemini model
       const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
       // Send prompt to Gemini and get the generated speech description
       let geminiResponse = "";
       let geminiTimeMs = 0;

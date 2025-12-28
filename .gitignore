@@ -4,6 +4,7 @@ Hugging Face Model/yolov3.weights
 Hugging Face Model/yolov3.cfg
 Hugging Face Model/coco.names
 Synchora Server/node_modules
+Synchora Server/yolov8n.pt
 Synchora Server/.env
 
 

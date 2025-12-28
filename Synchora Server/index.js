@@ -8,6 +8,10 @@ import express from "express";
 import multer from "multer";
 import { spawn } from "child_process";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import dotenv from "dotenv";
+
+
+dotenv.config();
 
 
 
@@ -30,7 +34,8 @@ app.use((req, res, next) => {
 const upload = multer();
 
 // Variable for Gemini API key (replace with your actual key)
-const GEMINI_API_KEY = "AIzaSyDfoEbYTtOlcA46NPfWeNZvIxJQ-dLjC7E";
+const GEMINI_API_KEY = process.env.GEMINI_KEY;
+console.log(GEMINI_API_KEY)
 
 // Define a POST endpoint '/upload' to receive image uploads
 // The 'upload.single("image")' middleware extracts a single file from the 'image' field

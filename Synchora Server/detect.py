@@ -3,24 +3,33 @@ import cv2
 import numpy as np
 import sys
 import json
+import os
 import io
 from PIL import Image
 
 def load_yolo():
-    """Load YOLO model"""
+    """Load YOLO model with absolute paths"""
     try:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+        weights_path = os.path.join(BASE_DIR, "yolov3.weights")
+        config_path = os.path.join(BASE_DIR, "yolov3.cfg")
+        names_path = os.path.join(BASE_DIR, "coco.names")
+
         # Load YOLO
-        net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
-        
+        net = cv2.dnn.readNet(weights_path, config_path)
+
         # Load class names
-        with open("coco.names", "r") as f:
+        with open(names_path, "r") as f:
             classes = [line.strip() for line in f.readlines()]
-        
+
         layer_names = net.getLayerNames()
-        output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
-        
+        output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers().flatten()]
+
         return net, classes, output_layers
+
     except Exception as e:
+        print("YOLO load error:", str(e))
         return None, None, None
 
 def detect_objects(image, net, classes, output_layers):
